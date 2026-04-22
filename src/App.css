@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=IBM+Plex+Mono:wght@300;400&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #F7F4EF;
+  --bg-2: #F0EBE3;
+  --bg-dark: #1A1714;
+  --bg-dark-2: #211E1A;
+  --ink: #1A1714;
+  --ink-2: #3D3830;
+  --ink-light: #7A7368;
+  --ink-faint: rgba(26,23,20,0.08);
+  --accent: #C84B2F;
+  --accent-2: #E8623E;
+  --accent-warm: #D4845A;
+  --paper: #FDFAF6;
+  --border: rgba(26,23,20,0.1);
+  --border-mid: rgba(26,23,20,0.2);
+  --glass: rgba(26,23,20,0.04);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-optical-sizing: auto;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Global grid texture — fixed overlay above ALL section backgrounds */
+.app::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(26,23,20,0.045) 39px, rgba(26,23,20,0.045) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(26,23,20,0.045) 39px, rgba(26,23,20,0.045) 40px);
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+}
+
+.main-content { flex: 1; }
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  background: var(--bg-dark);
+  letter-spacing: 0.5px;
+  font-family: 'IBM Plex Mono', monospace;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-name {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.footer p { color: rgba(240,235,227,0.4); }
+
+.section-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.reveal-block {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-block.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  padding: 0.85rem 2rem;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1.5px solid var(--ink);
+  transition: all 0.35s ease;
+  z-index: 1;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.btn-primary:hover::before { transform: scaleX(1); }
+.btn-primary:hover { border-color: var(--accent); }
+
+.btn-shimmer { display: none; }
+
+.btn-ghost {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  background: transparent;
+  color: var(--ink-2);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1.5px solid var(--border-mid);
+  transition: all 0.3s ease;
+}
+
+.btn-ghost:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+  background: var(--ink-faint);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
