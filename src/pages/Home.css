@@ -777,7 +777,7 @@
 }
 
 @media (max-width: 480px) {
-  .hero-name { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+  .hero-name { font-size: clamp(2rem, 8vw, 2.8rem); }
   .profile-frame { width: 170px; height: 205px; }
   .hero-cta-row { flex-direction: column; align-items: center; }
   .btn-primary, .btn-ghost { width: 100%; text-align: center; justify-content: center; }
