@@ -737,11 +737,49 @@
    RESPONSIVE
    ═══════════════════════════════════════ */
 @media (max-width: 960px) {
-  .hero-content { grid-template-columns: 1fr; padding: 5rem 2rem 3rem; }
-  .hero-right { display: none; }
+  .hero-content {
+    grid-template-columns: 1fr;
+    padding: 5rem 2rem 3rem;
+    text-align: center;
+  }
+  .hero-right {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+    order: -1; /* show image above text on mobile */
+  }
+  .profile-frame {
+    width: 200px;
+    height: 240px;
+  }
+  .ft-1 { top: 0.75rem; right: -1rem; font-size: 0.58rem; padding: 0.3rem 0.5rem; }
+  .ft-2 { bottom: 1rem; left: -1rem; font-size: 0.58rem; padding: 0.3rem 0.5rem; }
+  .hero-eyebrow, .hero-tagline-wrap, .hero-cta-row, .hero-stats {
+    justify-content: center;
+  }
+  .hero-desc { margin-left: auto; margin-right: auto; }
   .about-grid { grid-template-columns: 1fr; gap: 3rem; }
   .interests-grid { grid-template-columns: 1fr; }
   .interest-card { border-right: none; border-bottom: 1px solid rgba(240,235,227,0.08); }
   .container { padding: 0 1.5rem; }
-  .ft-1, .ft-2 { display: none; }
+
+  /* Fix personal details card overflow on mobile */
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  .detail-value, .detail-link {
+    text-align: left;
+    word-break: break-all;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-name { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+  .profile-frame { width: 170px; height: 205px; }
+  .hero-cta-row { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-ghost { width: 100%; text-align: center; justify-content: center; }
+  .about-card { padding: 1.5rem 1rem; }
 }
