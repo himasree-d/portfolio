@@ -997,6 +997,16 @@
     position: relative;
     z-index: 1;
   }
+  .modal-links .btn-ghost {
+    border: 1.5px solid rgba(240,235,227,0.25);
+    color: #F0EBE3;
+    background: transparent;
+  }
+  .modal-links .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(200,75,47,0.08);
+  }
   .modal-corner {
     position: absolute;
     width: 20px; height: 20px;

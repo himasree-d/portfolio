@@ -2,23 +2,27 @@ import { useEffect, useRef, useState } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import './Home.css'
 
-const skills = [
-  { name: 'Python', tag: 'lang' },
-  { name: 'JavaScript', tag: 'lang' },
-  { name: 'React', tag: 'framework' },
-  { name: 'Node.js', tag: 'runtime' },
-  { name: 'Spring Boot', tag: 'framework' },
-  { name: 'Java', tag: 'lang' },
-  { name: 'FastAPI', tag: 'framework' },
-  { name: 'SQL', tag: 'data' },
-  { name: 'Machine Learning', tag: 'ai' },
-  { name: 'Clustering', tag: 'ai' },
-  { name: 'Data Structures', tag: 'cs' },
-  { name: 'Git', tag: 'tool' },
-  { name: 'HTML/CSS', tag: 'web' },
-  { name: 'REST APIs', tag: 'web' },
-  { name: 'C/C++', tag: 'lang' },
-  { name: 'Linux', tag: 'tool' },
+const skillGroups = [
+  {
+    label: 'Languages',
+    items: ['Python', 'JavaScript', 'Java', 'C/C++', 'TypeScript'],
+  },
+  {
+    label: 'Frontend',
+    items: ['React', 'HTML5/CSS3', 'PWA', 'Responsive Design', 'Service Workers'],
+  },
+  {
+    label: 'Backend & Databases',
+    items: ['Node.js', 'Next.js', 'Express', 'FastAPI', 'MongoDB','SQL', 'PostgreSQL', 'Flask', 'Socket.io'],
+  },
+  {
+    label: 'ML / AI',
+    items: ['PyTorch', 'scikit-learn', 'NumPy/pandas', 'OpenCV', 'Matplotlib'],
+  },
+  {
+    label: 'Tools',
+    items: ['Git/GitHub', 'VS Code', 'Postman', 'Jupyter', 'Linux', 'Vite', 'Cursor'],
+  },
 ]
 
 const researchInterests = [
@@ -43,6 +47,11 @@ const researchInterests = [
 ]
 
 const roles = ['AI Student', 'Web Developer', 'ML Enthusiast', 'Problem Solver']
+
+/* ─── Name split into whole-word units so it never breaks
+   mid-word on wrap — each word animates its own letters but
+   stays visually atomic when the line wraps. ─── */
+const nameParts = ['Himasree', 'Dintakurthy']
 
 function RevealSection({ children, className = '', delay = 0 }) {
   const [ref, visible] = useScrollReveal()
@@ -77,7 +86,7 @@ function TypeWriter() {
   return <span className="typewriter">{text}<span className="tw-cursor">|</span></span>
 }
 
-function MagneticChip({ skill }) {
+function MagneticChip({ name, accent }) {
   const ref = useRef(null)
   const onMove = (e) => {
     const el = ref.current
@@ -90,9 +99,13 @@ function MagneticChip({ skill }) {
   const onLeave = () => { if (ref.current) ref.current.style.transform = '' }
 
   return (
-    <div ref={ref} className="skill-chip" data-tag={skill.tag} onMouseMove={onMove} onMouseLeave={onLeave}>
-      <span className="chip-tag">{skill.tag}</span>
-      {skill.name}
+    <div
+      ref={ref}
+      className={`skill-chip ${accent ? 'skill-chip-accent' : ''}`}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+    >
+      {name}
     </div>
   )
 }
@@ -119,12 +132,16 @@ export default function Home() {
   useEffect(() => {
     const el = heroNameRef.current
     if (!el) return
-    const text = el.dataset.name
-    el.innerHTML = text.split('').map((l, i) =>
-      l === ' '
-        ? '<span style="display:inline-block">&nbsp;</span>'
-        : `<span class="hero-letter" style="animation-delay:${i * 0.055 + 0.35}s">${l}</span>`
-    ).join('')
+
+    let globalIdx = 0
+    el.innerHTML = nameParts.map((word) => {
+      const letters = word.split('').map((l) => {
+        const delay = globalIdx * 0.055 + 0.35
+        globalIdx++
+        return `<span class="hero-letter" style="animation-delay:${delay}s">${l}</span>`
+      }).join('')
+      return `<span class="hero-name-word">${letters}</span>`
+    }).join('')
   }, [])
 
   return (
@@ -145,7 +162,6 @@ export default function Home() {
 
             <h1
               ref={heroNameRef}
-              data-name="Himasree       Dintakurthy"
               className="hero-name"
               style={{ animation: 'none' }}
             />
@@ -257,17 +273,26 @@ export default function Home() {
                 </div>
                 {[
                   ['Name', 'Himasree Dintakurthy'],
-                  ['Phone', '+91 86392 89187'],
-                  ['Personal Email', 'himasree2507@gmail.com'],
-                  ['College Email', 'se23uari032@mahindrauniversity.edu.in'],
-                  ['GitHub', 'github.com/himasree-d', true],
-                  ['LinkedIn', 'linkedin.com/in/himasree-d/', true],
+                  ['Phone', '+91 86392 89187', 'tel:+918639289187'],
+                  ['Personal Email', 'himasree2507@gmail.com', 'mailto:himasree2507@gmail.com'],
+                  ['College Email', 'se23uari032@mahindrauniversity.edu.in', 'mailto:se23uari032@mahindrauniversity.edu.in'],
+                  ['GitHub', 'github.com/himasree-d', 'https://github.com/himasree-d'],
+                  ['LinkedIn', 'linkedin.com/in/himasree-d/', 'https://www.linkedin.com/in/himasree-d/'],
                   ['Location', 'Hyderabad, India'],
-                ].map(([label, value, isLink]) => (
+                ].map(([label, value, href]) => (
                   <div className="detail-row" key={label}>
                     <span className="detail-label">{label}</span>
-                    {isLink
-                      ? <a href={`https://${value}`} target="_blank" rel="noreferrer" className="detail-link">{value}</a>
+                    {href
+                      ? (
+                        <a
+                          href={href}
+                          target={href.startsWith('http') ? '_blank' : undefined}
+                          rel={href.startsWith('http') ? 'noreferrer' : undefined}
+                          className="detail-link"
+                        >
+                          {value}
+                        </a>
+                      )
                       : <span className="detail-value">{value}</span>
                     }
                   </div>
@@ -303,17 +328,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SKILLS */}
+      {/* SKILLS — spec-sheet rows */}
       <section className="skills-section">
         <div className="container">
           <RevealSection>
             <p className="section-label">Technical Proficiency</p>
             <h2 className="section-title">Skills &amp;<br /><em>Technologies</em></h2>
           </RevealSection>
-          <div className="skills-grid">
-            {skills.map((skill, i) => (
-              <RevealSection key={skill.name} delay={i * 45}>
-                <MagneticChip skill={skill} />
+
+          <div className="skills-groups">
+            {skillGroups.map((group, gi) => (
+              <RevealSection key={group.label} delay={gi * 90} className="skill-row">
+                <div className="skill-row-label">
+                  <span className="skill-row-num">0{gi + 1}</span>
+                  <p className="skill-group-label">{group.label}</p>
+                </div>
+                <div className="skills-grid">
+                  {group.items.map((name) => (
+                    <MagneticChip key={name} name={name} />
+                  ))}
+                </div>
               </RevealSection>
             ))}
           </div>

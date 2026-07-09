@@ -112,6 +112,14 @@
   min-height: 1.1em;
 }
 
+/* Each name is a single unbreakable unit so wrapping never
+   splits a word mid-way — desktop keeps names side by side,
+   mobile stacks each name on its own line (see media query). */
+.hero-name-word {
+  display: inline-block;
+  margin-right: 0.3em;
+}
+
 .hero-letter {
   display: inline-block;
   opacity: 0;
@@ -653,11 +661,11 @@
 }
 
 /* ═══════════════════════════════════════
-   SKILLS
+   SKILLS — spec-sheet rows
    ═══════════════════════════════════════ */
 .skills-section {
   background: var(--bg-2);
-  padding: 7rem 0 8rem;
+  padding: 4.5rem 0 5rem;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   position: relative;
@@ -675,20 +683,55 @@
   pointer-events: none;
 }
 
+.skills-groups {
+  margin-top: 1.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.skill-row:last-child { border-bottom: none; }
+
+.skill-row-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.skill-row-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  opacity: 0.6;
+}
+
+.skill-group-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
 .skills-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-top: 1.5rem;
+  gap: 0.55rem;
 }
 
 .skill-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 1.1rem;
+  padding: 0.45rem 0.85rem;
   border: 1px solid var(--border-mid);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--ink-2);
   background: var(--paper);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -713,24 +756,18 @@
   background: var(--ink);
   color: var(--paper);
   border-color: var(--ink);
-  transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(26,23,20,0.18);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(26,23,20,0.16);
 }
-.chip-tag {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+
+.skill-chip-accent {
+  border-color: var(--accent);
   color: var(--accent);
-  padding: 0.1rem 0.3rem;
-  border: 1px solid rgba(200,75,47,0.3);
-  background: rgba(200,75,47,0.06);
-  transition: all 0.25s;
 }
-.skill-chip:hover .chip-tag {
-  color: var(--accent-warm);
-  border-color: rgba(212,132,90,0.5);
-  background: rgba(212,132,90,0.15);
+.skill-chip-accent:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--paper);
 }
 
 /* ═══════════════════════════════════════
@@ -774,11 +811,23 @@
     word-break: break-all;
     font-size: 0.82rem;
   }
+
+  /* Skills: stack label above chips on tablet/mobile */
+  .skill-row {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
 }
 
 @media (max-width: 480px) {
-  .hero-name { font-size: clamp(2rem, 8vw, 2.8rem); 
-             word-spacing: 100vw; }
+  .hero-name {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+  /* Each name stacks on its own line — no mid-word breaking */
+  .hero-name-word {
+    display: block;
+    margin-right: 0;
+  }
   .profile-frame { width: 170px; height: 205px; }
   .hero-cta-row { flex-direction: column; align-items: center; }
   .btn-primary, .btn-ghost { width: 100%; text-align: center; justify-content: center; }

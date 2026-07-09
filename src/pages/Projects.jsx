@@ -5,13 +5,13 @@ import './Projects.css'
 const projects = [
   {
     id: 1,
-    title: 'Academa',
-    tagline: 'A full university, wired into one platform',
+    title: 'Chirp',
+    tagline: 'Real-time, calm, and refreshingly un-addictive',
     description:
-      'Developed a full-stack academic platform with dedicated dashboards for students, faculty, and administrators. Implemented course management, assignment tracking, announcements, and real-time messaging. Integrated backend APIs with Node.js and designed relational database schema using MySQL, with JWT-based authentication in progress.',
-    tech: ['React', 'Node.js', 'MySQL', 'JWT Auth'],
-    github: 'https://github.com/himasree-d/uni_portal',
-    live: null,
+      'A full-stack social platform built with MERN and Socket.io. Chronological feed, no engagement-bait mechanics. Real-time notifications via private Socket.io rooms, JWT auth, Cloudinary image pipeline, and a full light/dark design system on CSS custom properties.',
+    tech: ['React 19', 'Node.js', 'Express', 'MongoDB', 'Socket.io', 'JWT'],
+    github: 'https://github.com/himasree-d/chirp_social_media_app',
+    live: 'https://chirp-frontend-six.vercel.app',
     year: '2026',
     type: 'Full Stack',
     number: '01',
@@ -19,59 +19,155 @@ const projects = [
   },
   {
     id: 2,
-    title: 'Task Manager',
-    tagline: 'Persistence without a database — just intent',
+    title: 'CV Inference Dashboard',
+    tagline: 'Upload. Infer. Watch it think.',
     description:
-      'Developed a frontend-only task management application using HTML, CSS, and JavaScript. Implemented task creation, editing, deletion, and status tracking with a clean and responsive interface. Integrated browser local storage to persist tasks across sessions, ensuring data remains available even after refreshing the page.',
-    tech: ['HTML', 'CSS', 'JavaScript'],
-    github: 'https://github.com/himasree-d/Task-Management-Web-Application',
-    live: 'https://himasree-d.github.io/Task-Management-Web-Application/',
-    year: '2025',
-    type: 'Frontend',
+      'A production-style computer vision app running YOLOv8 detection and segmentation. FastAPI backend with Celery + Redis for async job queuing, Dockerized end-to-end, with a React dashboard polling job status and rendering annotated results with per-frame metadata.',
+    tech: ['FastAPI', 'Celery', 'Redis', 'YOLOv8', 'React', 'Docker'],
+    github: 'https://github.com/himasree-d/cv-dashboard',
+    live: null,
+    year: '2026',
+    type: 'CV / Full Stack',
     number: '02',
     accentDir: 'right',
   },
   {
     id: 3,
-    title: 'Cell Interaction Prediction',
-    tagline: 'Teaching machines to read biological language',
+    title: 'Zest',
+    tagline: 'Personal finance, taken seriously',
     description:
-      'Developed a deep learning pipeline to predict cell-cell interactions from gene expression data using a two-stage ANN → CNN architecture. Extracted compact feature representations and applied multiple CNN models (LeNet, AlexNet, ResNet) for classification. Evaluated using accuracy, precision, recall, and F1-score on real biological datasets.',
-    tech: ['Python', 'PyTorch', 'NumPy', 'Pandas', 'Deep Learning'],
-    github: 'https://github.com/himasree-d/Deep-Neural-Networks-cell-to-cell-interaction-',
-    live: null,
+      'A full-stack personal finance tracker with JWT auth and refresh token rotation, Groq-powered AI spending insights, and Recharts visualizations. Rebuilt data layer from Prisma/PostgreSQL to Mongoose, with a warm stone-and-teal design system and INR locale support. Underwent a full senior-level code audit.',
+    tech: ['React', 'TypeScript', 'Express', 'MongoDB', 'Groq API', 'Zustand'],
+    github: 'https://github.com/himasree-d/zest_finance_tracker',
+    live: 'https://zest-finance-tracker.vercel.app',
     year: '2026',
-    type: 'ML / Deep Learning',
+    type: 'Full Stack',
     number: '03',
     accentDir: 'left',
   },
   {
     id: 4,
-    title: 'Predictive Maintenance',
-    tagline: 'Anticipating engine failure before it speaks',
+    title: 'Code Review Companion',
+    tagline: 'Four AI reviewers, one pipeline, zero repeated mistakes',
     description:
-      'Developed a hybrid predictive maintenance system using NASAs CMAPSS dataset to model aircraft engine degradation. Implemented K-Means clustering to define health stages, followed by Random Forest and XGBoost for stage classification, and regression models to predict remaining useful life.',
-    tech: ['Python', 'Scikit-learn', 'XGBoost', 'Pandas', 'NumPy'],
-    github: 'https://github.com/himasree-d/Predictive-Maintenance-System',
-    live: null,
-    year: '2025',
-    type: 'ML / Data Science',
+      'An agentic code review tool running four parallel Groq API calls — bugs, security, style, suggestions — plus a fifth summary pass. Persists submissions to MongoDB and flags recurring issue patterns across your review history, no login required.',
+    tech: ['React', 'Node.js', 'Express', 'Groq API', 'MongoDB'],
+    github: 'https://github.com/himasree-d/CodeReviewCompanionBot',
+    live: 'https://code-review-companion-bot.vercel.app/',
+    year: '2026',
+    type: 'AI / Agentic',
     number: '04',
     accentDir: 'right',
   },
   {
     id: 5,
+    title: 'MeshNet',
+    tagline: 'A network that needs no network',
+    description:
+      'A serverless, offline-first emergency relay app — every phone becomes a mesh node. QR-based visual relay works in any browser; the Android build adds true P2P via Nearby Connections. Multi-hop propagation, expiring messages, communal QR Drop point. 1st place, Hackathon 418.',
+    tech: ['React 19', 'Vite', 'Tailwind', 'Capacitor', 'WebCrypto'],
+    github: 'https://github.com/himasree-d/MeshNet',
+    live: 'https://himasree-d.github.io/MeshNet',
+    year: '2025',
+    type: 'Systems / PWA',
+    number: '05',
+    accentDir: 'left',
+  },
+  {
+    id: 6,
+    title: 'Privacy Policy Grader',
+    tagline: "Reads the fine print so you don't have to",
+    description:
+      'Scores any privacy policy 0–100 across 5 weighted dimensions. Custom NLP pipeline (5 readability formulas from scratch, 150+ term jargon dictionary, 15+ dark-pattern detectors) feeds a Groq LLM, cross-checked by a difflib hallucination guard. 23 passing tests.',
+    tech: ['Flask', 'Groq', 'NLTK', 'SQLAlchemy', 'BeautifulSoup4'],
+    github: 'https://github.com/himasree-d/PrivacyPolicyGrader',
+    live: 'https://privacy-policy-grader.onrender.com/',
+    year: '2026',
+    type: 'AI / NLP',
+    number: '06',
+    accentDir: 'right',
+  },
+]
+
+const allProjects = [
+  ...projects,
+  {
+    id: 7,
+    title: 'Cell Interaction Prediction',
+    tagline: 'Teaching machines to read biological language',
+    description:
+      'A deep learning pipeline predicting cell-cell interactions from gene expression data using a two-stage ANN → CNN architecture, evaluating LeNet, AlexNet, and ResNet variants on real biological datasets.',
+    tech: ['Python', 'PyTorch', 'NumPy', 'Pandas'],
+    github: 'https://github.com/himasree-d/Deep-Neural-Networks-cell-to-cell-interaction-',
+    live: null,
+    year: '2026',
+    number: '07',
+    type: 'ML / Deep Learning',
+  },
+  {
+    id: 8,
+    title: 'Academa',
+    tagline: 'A full university, wired into one platform',
+    description:
+      'A full-stack academic platform with dedicated dashboards for students, faculty, and administrators — course management, assignment tracking, announcements, and real-time messaging on a MySQL relational schema.',
+    tech: ['React', 'Node.js', 'MySQL', 'JWT Auth'],
+    github: 'https://github.com/himasree-d/uni_portal',
+    live: null,
+    year: '2026',
+    number: '08',
+    type: 'Full Stack',
+  },
+  {
+    id: 9,
+    title: 'Predictive Maintenance',
+    tagline: 'Anticipating engine failure before it speaks',
+    description:
+      'A hybrid predictive maintenance system on NASA\u2019s CMAPSS dataset — K-Means clustering for health stages, then Random Forest and XGBoost for stage classification, plus regression for remaining useful life.',
+    tech: ['Python', 'Scikit-learn', 'XGBoost'],
+    github: 'https://github.com/himasree-d/Predictive-Maintenance-System',
+    live: null,
+    year: '2025',
+    number: '09',
+    type: 'ML / Data Science',
+  },
+  {
+    id: 10,
+    title: 'Minesweeper — Enhanced Edition',
+    tagline: 'A classic, rebuilt with themes, hints, and chords',
+    description:
+      'A full-featured Minesweeper built in Java Swing — three difficulty levels, safe-first-click, saved best times, three themes, synthesized sound effects, a logical hint system, and save/load support.',
+    tech: ['Java', 'Swing'],
+    github: 'https://github.com/himasree-d/minesweeper',
+    live: null,
+    year: '2025',
+    number: '10',
+    type: 'Desktop / Java',
+  },
+  {
+    id: 11,
     title: 'Subtitle Generator',
     tagline: 'Speech transcribed across 80 languages, silently',
     description:
-      'Developed an end-to-end NLP pipeline to generate synchronized subtitles from audio and video files. Implemented audio preprocessing with noise reduction, silence removal, and chunking, followed by multilingual transcription using the Whisper model. Generated accurate SRT files with timestamp alignment.',
-    tech: ['Python', 'Whisper', 'Librosa', 'FFmpeg', 'NumPy'],
+      'An end-to-end NLP pipeline generating synchronized subtitles from audio and video — noise reduction and chunking, multilingual transcription via Whisper, and timestamp-aligned SRT output.',
+    tech: ['Python', 'Whisper', 'Librosa', 'FFmpeg'],
     github: 'https://github.com/himasree-d/NLP-Project',
     live: null,
     year: '2025',
+    number: '11',
     type: 'NLP / ML',
-    number: '05',
-    accentDir: 'left',
+  },
+  {
+    id: 12,
+    title: 'Task Manager',
+    tagline: 'Persistence without a database — just intent',
+    description:
+      'A frontend-only task management app with creation, editing, deletion, and status tracking, persisting tasks across sessions via browser local storage.',
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    github: 'https://github.com/himasree-d/Task-Management-Web-Application',
+    live: 'https://himasree-d.github.io/Task-Management-Web-Application/',
+    year: '2025',
+    number: '12',
+    type: 'Frontend',
   },
 ]
 
@@ -105,7 +201,7 @@ function ProjectModal({ project, onClose }) {
         <div className="modal-meta-row">
           <span className="modal-number">{project.number}</span>
           <span className="modal-type-badge">{project.type}</span>
-          <span className="modal-year">{project.year}</span>
+          <span className="modal-year">{project.year || '—'}</span>
         </div>
 
         <h2 className="modal-title">{project.title}</h2>
@@ -113,7 +209,7 @@ function ProjectModal({ project, onClose }) {
 
         <div className="modal-divider" />
 
-        <p className="modal-desc">{project.description}</p>
+        <p className="modal-desc">{project.description || project.tagline}</p>
 
         <div className="modal-tech">
           {project.tech.map((t) => (
@@ -259,24 +355,37 @@ function ProjectSection({ project, index }) {
 function HScrollStrip() {
   const trackRef = useRef(null)
   const [dragging, setDragging] = useState(false)
+  const [spotlight, setSpotlight] = useState(null)
   const startX = useRef(0)
   const scrollLeft = useRef(0)
+  const movedRef = useRef(false)
 
   const onMouseDown = (e) => {
     setDragging(true)
+    movedRef.current = false
     startX.current = e.pageX - trackRef.current.offsetLeft
     scrollLeft.current = trackRef.current.scrollLeft
   }
   const onMouseMove = useCallback((e) => {
     if (!dragging) return
+    movedRef.current = true
     const x = e.pageX - trackRef.current.offsetLeft
     const walk = (x - startX.current) * 1.5
     trackRef.current.scrollLeft = scrollLeft.current - walk
   }, [dragging])
   const stopDrag = () => setDragging(false)
 
+  const openSpotlight = (p) => {
+    if (movedRef.current) return // was a drag, not a click
+    setSpotlight(p)
+  }
+
   return (
     <section className="hscroll-section">
+      {spotlight && (
+        <ProjectModal project={spotlight} onClose={() => setSpotlight(null)} />
+      )}
+
       <div className="container">
         <p className="section-label">Quick View</p>
         <h2 className="section-title">All Projects<br /><em>at a glance</em></h2>
@@ -291,8 +400,16 @@ function HScrollStrip() {
         onMouseLeave={stopDrag}
       >
         <div className="hscroll-hint">← drag to explore →</div>
-        {projects.map((p, i) => (
-          <div className="hscroll-card" key={p.id} style={{ animationDelay: `${i * 0.1}s` }}>
+        {allProjects.map((p, i) => (
+          <div
+            className="hscroll-card"
+            key={p.id}
+            style={{ animationDelay: `${i * 0.1}s` }}
+            onClick={() => openSpotlight(p)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && openSpotlight(p)}
+          >
             <div className="hc-noise" />
             <span className="hc-num">{p.number}</span>
             <h3 className="hc-title">{p.title}</h3>
@@ -318,6 +435,7 @@ function HScrollStrip() {
 
 /* ─── Page ──────────────────────────────────────────────── */
 export default function Projects() {
+  const yearsBuilding = new Date().getFullYear() - 2023
   return (
     <div className="projects-page">
 
@@ -345,13 +463,13 @@ export default function Projects() {
           </div>
 
           <div className="proj-hero-right" style={{ animation: 'fadeIn 1s ease 0.5s both' }}>
-            <div className="proj-hero-counter">
-              <span className="phc-num">{String(projects.length).padStart(2, '0')}</span>
-              <span className="phc-label">projects</span>
-            </div>
+          <div className="proj-hero-counter">
+            <span className="phc-num">{String(allProjects.length).padStart(2, '0')}+</span>
+            <span className="phc-label">projects</span>
+          </div>
             <div className="proj-hero-stats">
               {[
-                ['Stack', 'Full Stack + ML'],
+                ['Stack', 'Full Stack + AI/ML'],
                 ['Period', '2023 – present'],
                 ['Status', 'Active'],
               ].map(([l, v]) => (
@@ -422,18 +540,18 @@ export default function Projects() {
  
           {/* RIGHT — typographic stat block */}
           <div className="cta-right">
+          <div className="cta-stat">
+            <span className="cta-stat-num" data-val={`${allProjects.length}`}>{allProjects.length}+</span>
+            <span className="cta-stat-label">Projects shipped</span>
+            <span className="cta-stat-accent">& counting</span>
+          </div>
             <div className="cta-stat">
-              <span className="cta-stat-num" data-val="05">05</span>
-              <span className="cta-stat-label">Projects shipped</span>
-              <span className="cta-stat-accent">& counting</span>
-            </div>
-            <div className="cta-stat">
-              <span className="cta-stat-num" data-val="03+">03+</span>
+              <span className="cta-stat-num" data-val="04+">04+</span>
               <span className="cta-stat-label">Domains explored</span>
-              <span className="cta-stat-accent">Full Stack · ML · NLP</span>
+              <span className="cta-stat-accent">Full Stack · AI/ML · CV · Systems</span>
             </div>
             <div className="cta-stat">
-              <span className="cta-stat-num" data-val="2+">2+</span>
+              <span className="cta-stat-num" data-val={`${yearsBuilding}+`}>{yearsBuilding}+</span>
               <span className="cta-stat-label">Years building</span>
               <span className="cta-stat-accent">2023 – present</span>
             </div>
